@@ -1,0 +1,326 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.app {
+  background-color: #04192e;
+}
+
+.app .header {
+  color: white;
+}
+
+.app .banner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: #cca943;
+  text-decoration: none;
+}
+
+.app .banner img.img-banner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.05;
+}
+
+.app .banner img.thumb {
+  border-radius: 5px;
+}
+
+.app .main-time-loca {
+  margin: 0;
+  padding: 0;
+  background-color: #042847;
+}
+
+.app .footer {
+  color: white;
+  background-color: #042847;
+}
+
+.app .footer .footer-copyright {
+  background-color: #062341;
+}
+
+/* ================================== */
+
+.container .row .thumb-pic {
+  height: 300px;
+}
+
+.container .row .thumb-pic img {
+  width: 100%;
+  height: 100%;
+}
+
+.container .row .thumb-content {
+  color: white;
+}
+
+.container .row .thumb-content .title {
+  margin-bottom: 30px;
+}
+
+.container .row .thumb-content .detail .imdb,
+.container .row .thumb-content .detail .duration {
+  display: flex;
+  line-height: 31px;
+}
+
+.container .row .thumb-content .detail .imdb .imdb-icon {
+  color: #e6ba36;
+  margin-right: 5px;
+  background-color: inherit;
+}
+
+.container .row .thumb-content .detail .duration .clock-icon {
+  color: white;
+  margin-right: 5px;
+}
+
+.container .row .thumb-content .detail .row .watch-trailer {
+  padding: 0.7rem 0.8rem;
+  border: 2px solid #cca943;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.container .row .thumb-content .detail .row .watch-trailer:hover {
+  background-color: #cca943;
+}
+
+.container .row .thumb-content .detail #trailer {
+  margin-top: 60px;
+}
+
+
+@media (max-width: 767px) {
+  .container .row .thumb-content .title {
+    margin-bottom: 5px;
+  }
+  .container .row .thumb-content .detail #trailer {
+    margin-top: 5px;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.time-location {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.container .time-location .select-date,
+.container .time-location .select-time,
+.container .time-location .select-auditorium {
+  text-align: center;
+}
+
+.container .time-location .select-date #date {
+  height: 28px;
+  font-size: 1.2rem;
+  color: #cca943;
+  outline: none;
+  border: none;
+  background-color: inherit;
+}
+
+.container .time-location .select-time #time {
+  height: 28px;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  color: #cca943;
+  background-color: inherit;
+}
+
+.container .time-location .select-auditorium #auditorium {
+  height: 28px;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  color: #cca943;
+  background-color: inherit;
+}
+
+.container .time-location .item-option {
+  border: none;
+  outline: none;
+}
+
+/* ==============bill=================== */
+.bill {
+  width: 100%;
+  color: white;
+}
+
+.bill .bill-selected section .seat-selected {
+  height: 35px;
+  width: 40px;
+  background-color: #082f50;
+  color: #cca943;
+  text-align: center;
+  margin-right: 5px;
+  line-height: 35px;
+  border-radius: 5px;
+}
+
+.bill .add-food,
+.bill .buy-ticket {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  line-height: 40px;
+  color: white;
+  background-color: #05325c;
+  border-radius: 10px;
+}
+
+.bill .buy-ticket {
+  margin-top: 15px;
+  background-color: #cca943;
+}
+
+.bill .add-food:hover,
+.bill .buy-ticket:hover {
+  cursor: pointer;
+}
+
+.bill .bill-price .my-border {
+  border-bottom: 1px solid #014380;
+}
+
+/* ==============annotation============= */
+.annotation {
+  color: white;
+}
+
+.annotation .seat-anno {
+  width: 25%;
+  height: 30px;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 11px 11px 0px 0px;
+  border: 2px solid #014380;
+}
+
+.annotation p {
+  line-height: 30px;
+}
+
+/* =============screen============= */
+.screen {
+  width: 100%;
+  height: 30px;
+  margin: 10px auto 35px auto;
+  text-align: center;
+  line-height: 30px;
+  color: #04192e;
+  background-color: #cca943;
+  border-radius: 0px 0px 100% 100%;
+}
+
+/* =================seats================== */
+.padding-seat {
+  padding-right: 2px !important;
+  padding-left: 2px !important;
+}
+
+.seat {
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 11px 11px 0px 0px;
+  border: 2px solid #014380;
+}
+
+.seat:hover {
+  background-color: #cca943;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #cca943;
+}
+
+.sold {
+  background-color: #5b5e61;
+}
+
+.sold:hover {
+  cursor: not-allowed;
+  background-color: #5b5e61;
+}
+
+.my-text {
+  font-size: .8rem;  
+}
+
+@media (min-width: 320px) {
+  .my-text { font-size: .6rem; }
+}
+
+@media (min-width: 576px) {
+  .my-text { font-size: .8rem; }
+}
+
+@media (min-width: 768px) {
+  .my-text { font-size: .9rem; }
+}
+
+@media (min-width: 992px) {
+  .my-text { font-size: .8rem; }
+}
+
+@media (min-width: 1200px) {
+  .my-text { font-size: 1rem; }
+}
+
+/* ===============food=============== */
+.foods {
+  width: 100%;
+  /* height: 500px; */
+  /* overflow: scroll; */
+  border-radius: 10px;
+  background-color: #053763;
+}
+
+.foods .title {
+  color: #cca943;
+}
+
+.foods .btn-apply-food {
+  background-color: #cca943;
+  color: white;
+}
+
+.foods .btn-apply-food:hover {
+  background-color: #053763;
+  color: #cca943;
+  border: 1.4px solid #cca943;
+}
+
+.food-item {
+  width: 100%;
+}

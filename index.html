@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/all.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/all.js"></script>
+
+  <title>Ticket Booking</title>
+</head>
+
+<body>
+  <div class="app">
+    <div class="banner">
+      <img class="img-banner" src="" alt="banner">
+      <header class="header pt-3">
+        <div class="container">
+          <div class="row">
+            <div class="col-3">
+              <div class="logo">
+                <a href="">
+                  Cine Fsoft
+                </a>
+              </div>
+            </div>
+            <div class="col-7">
+              <div class="row justify-content-around align-items-center">
+                <div class="menu-item">
+                  <a href="">
+                    Movies
+                  </a>
+                </div>
+                <div class="menu-item">
+                  <a href="">
+                    Events
+                  </a>
+                </div>
+                <div class="menu-item">
+                  <a href="">
+                    Artist
+                  </a>
+                </div>
+                <div class="menu-item">
+                  <a href="">
+                    News
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <a href="" class="row justify-content-end">
+                <p class="user mr-1">ddthanh</p>
+                <div class="user-img">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="container py-4">
+        <div class="row">
+          <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 thumb-pic">
+            <img src="" id="load-thumb" alt="thumb avengers" class="thumb" />
+          </div>
+          <div class="col-6 col-sm-6 col-md-6 col-lg-8 col-xl-9 thumb-content">
+            <div class="title">
+              <h2 id="load-title"></h2>
+            </div>
+            <div class="detail">
+              <div class="row diff-flex">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 imdb">
+                  <i class="fab fa-imdb fa-2x imdb-icon"></i>
+                  <p id="load-imdb"></p>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 duration">
+                  <i class="far fa-clock fa-2x clock-icon"></i>
+                  <p id="load-duration"></p>
+                </div>
+              </div>
+              <div class="row" id="trailer">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                  <a href="#" id="load-trailler" class="watch-trailer" target="_blank">
+                    Watch Trailer
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-5 main-time-loca">
+      <div class="container">
+        <div class="row time-location">
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 select-date">
+            <select name="date" id="date">
+              <option className="item-option" value="0">Select Date</option>
+            </select>
+          </div>
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 select-auditorium">
+            <select name="auditorium" id="auditorium">
+              <option class="item-option" value="0">Select Auditorium</option>
+            </select></div>
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 select-time">
+            <select name="time" id="time">
+              <option class="item-option" value="0">Select Time</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div
+          class="order-2 order-sm-2 order-md-2 order-lg-1 order-xl-1 col-8 col-sm-8 col-md-8 col-lg-4 col-xl-4 mx-auto">
+          <div class="bill mt-5">
+            <h4 class="title">Your Selected Seats</h4>
+            <div class="bill-selected mt-4">
+              <p id="number-of-seats">0 Seats</p>
+              <section id="list-seat-selected" class="d-flex mt-1 flex-wrap">
+              </section>
+            </div>
+            <div class="bill-price mt-5 mb-5">
+              <div class="row mb-3">
+                <div class="col-6 col-sm-6 col-md-5 col-lg-4 col-xl-4">Ticket</div>
+                <div class="col-6 col-sm-6 col-md-7 col-lg-8 col-xl-8" id="ticket-price">0 VND</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6 col-sm-6 col-md-5 col-lg-4 col-xl-4">Food</div>
+                <div class="col-6 col-sm-6 col-md-7 col-lg-8 col-xl-8" id="food-price">0 VND</div>
+              </div>
+              <div class="row mb-3 pb-3 my-border">
+                <div class="col-6 col-sm-6 col-md-5 col-lg-4 col-xl-4">Discount</div>
+                <div class="col-6 col-sm-6 col-md-7 col-lg-8 col-xl-8" id="discount">0%</div>
+              </div>
+              <div class="row mb-3 mt-4">
+                <div class="col-6 col-sm-6 col-md-5 col-lg-4 col-xl-4">Total</div>
+                <div class="col-6 col-sm-6 col-md-7 col-lg-8 col-xl-8" id="total-money">0 VND</div>
+              </div>
+            </div><a href="#app-food" class="btn add-food" id="add-food">Add Food</a>
+            <div class="buy-ticket pt-1" id="buy-ticket">Buy Ticket</div>
+          </div>
+        </div>
+        <div class="order-1 order-sm-1 order-md-1 order-lg-2 order-xl-2 col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+          <div class="row justify-content-end">
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+              <div class="row annotation">
+                <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-4 d-flex">
+                  <div class="seat-anno mr-2"></div>
+                  <p>Available</p>
+                </div>
+                <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-4 d-flex">
+                  <div class="seat-anno selected mr-2"></div>
+                  <p>Selected</p>
+                </div>
+                <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-4 d-flex">
+                  <div class="seat-anno sold mr-2"></div>
+                  <p>Sold</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="screen text-uppercase">screen</div>
+            </div>
+          </div>
+          <div class="seats">
+            <div id="load-seats" class="form-row">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="app-food" class="container mt-4">
+      <div class="foods">
+        <div class="row justify-content-center mx-0">
+          <div class="col-10 d-flex justify-content-center">
+            <h3 class="title">Food and Drink</h3>
+          </div>
+          <div class="col-2 d-flex justify-content-end pr-0">
+            <div id="close-foody" class="btn btn-apply-food">Close</div>
+          </div>
+        </div>
+        <div class="row" id="list-food">
+          <!-- add food data           -->
+        </div>
+      </div>
+    </div>
+    <div class="footer mt-5">
+      <div class="container">
+        <footer class="page-footer font-small blue pt-4">
+          <div class="container-fluid text-center text-md-left">
+            <div class="row">
+              <div class="col-md-6 mt-md-0 mt-3">
+                <div class="row">
+                  <h5 class="text-uppercase">Cinema FSoft</h5>
+                </div>
+                <div class="row">
+                  <a href="https://goo.gl/maps/dQpxRDT3uKoa9VJG8" target="_blank">
+                    <i class="fas fa-map-marker-alt mr-1"></i>
+                  </a>
+                  </a>
+                  <p>369 Nguyễn Tất Thành, Hải Châu, Đà Nẵng</p>
+                </div>
+              </div>
+              <hr class="clearfix w-100 d-md-none pb-3">
+              <div class="col-md-3 mb-md-0 mb-3">
+                <h6 class="text-uppercase">Social media</h6>
+                <ul class="list-unstyled">
+                  <li>
+                    <i class="fab fa-facebook-square"></i>
+                    <a href="#!">facebook.com/cinefsoft</a>
+                  </li>
+                  <li>
+                    <i class="fab fa-twitter-square"></i>
+                    <a href="#!">twitch.com/cinefsoft</a>
+                  </li>
+                  <li>
+                    <i class="fab fa-instagram-square"></i>
+                    <a href="#!">instagram.com/cinefsoft</a>
+                  </li>
+                  <li>
+                    <i class="fab fa-youtube"></i>
+                    <a href="#!">youtube.com/cinefsoft</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-3 mb-md-0 mb-3">
+                <h6 class="text-uppercase">Contact Us</h6>
+                <ul class="list-unstyled">
+                  <li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="#!">cinefsoft@gmail.com</a>
+                  </li>
+                  <li>
+                    <i class="fab fa-facebook-messenger"></i>
+                    <a href="#!">messenger/cinefsoft</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+      <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="">CineFsoft.com</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
+  <div id="add-script"></div>
+  <div id="add-script-foody"></div>
+  <script>
+    $(document).ready(function () {
+
+    });
+
+
+  </script>
+
+</body>
+
+</html>
