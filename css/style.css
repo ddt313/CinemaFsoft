@@ -279,22 +279,37 @@ a:hover {
 
 @media (min-width: 320px) {
   .my-text { font-size: .6rem; }
+  .thumb-pic {
+    height: 200px !important;
+  }
 }
 
 @media (min-width: 576px) {
   .my-text { font-size: .8rem; }
+  .thumb-pic {
+    height: 240px !important;
+  }
 }
 
 @media (min-width: 768px) {
   .my-text { font-size: .9rem; }
+  .thumb-pic {
+    height: 300px !important;
+  }
 }
 
 @media (min-width: 992px) {
   .my-text { font-size: .8rem; }
+  .thumb-pic {
+    height: 300px !important;
+  }
 }
 
 @media (min-width: 1200px) {
   .my-text { font-size: 1rem; }
+  .thumb-pic {
+    height: 300px !important;
+  }
 }
 
 /* ===============food=============== */

@@ -22,6 +22,7 @@ $(document).ready(function () {
   fetchFoody();
   fetchDataFilm();
 
+  $("#username").html(acc_username);
   $("#app-food").hide();
   $("#add-food").click(function (e) {
     $("#app-food").toggle();
@@ -44,11 +45,10 @@ $(document).ready(function () {
 
 const fetchDataFilm = () => {
   $.ajax({
-    url: 'http://localhost:8080/LearnAPIJava/rest/film/' + idFilm,
+    url: 'http://localhost:8080/film/' + idFilm,
     type: "get",
     dataType: 'json',
     success: (data) => {
-      console.log(data);
       $("#load-title").html(data.title);
       $("#load-imdb").html(data.imdb);
       $("#load-duration").html(`${parseInt(data.duration / 60)}h ${data.duration % 60}min`);
@@ -83,11 +83,11 @@ function onChangeDate() {
     return;
   }
 
-  let dateTemp = new Date(Number($(this).find("option:selected").val()));
-  const day = dateTemp.getDate() / 10 < 1 ? "0" + dateTemp.getDate() : dateTemp.getDate();
-  const month = (dateTemp.getMonth() + 1) / 10 < 1 ? "0" + (dateTemp.getMonth() + 1) : (dateTemp.getMonth() + 1);
+  $("#time").html(`<option class="item-option" value="0">Select Time</option>`);
+  $("#load-seats").html("");
+  $("#list-food").html("");
 
-  dateSelected = dateTemp.getFullYear() + "-" + month + "-" + day;
+  dateSelected = $(this).find("option:selected").val();
   fetchAuditorium(dateSelected);
 }
 
@@ -98,7 +98,7 @@ function onChangeAudi() {
   audiSelected = $(this).find("option:selected").val();
 
   fetchTime(dateSelected, audiSelected);
-
+  $("#list-food").html("");
 }
 
 function onChangeTime() {
@@ -110,11 +110,12 @@ function onChangeTime() {
 
   fetchPriceDiscount(dateSelected, audiSelected, timeSelected);
   fetchAllSeats(dateSelected, audiSelected, timeSelected);
+  showFoodData();
 }
 
 const fetchDate = () => {
   $.ajax({
-    url: 'http://127.0.0.1:8080/LearnAPIJava/rest/film/' + idFilm + "/date",
+    url: 'http://127.0.0.1:8080/film/' + idFilm + "/date",
     type: "get",
     dataType: 'json',
     success: (data) => {
@@ -147,7 +148,7 @@ const listDateFunc = (data) => {
 
 const fetchAuditorium = (date) => {
   $.ajax({
-    url: 'http://127.0.0.1:8080/LearnAPIJava/rest/film/' + idFilm + "/" + date + "/audi",
+    url: 'http://127.0.0.1:8080/film/' + idFilm + "/" + date + "/audi",
     type: "get",
     dataType: 'json',
     success: (data) => {
@@ -159,7 +160,7 @@ const fetchAuditorium = (date) => {
 const listAudiFunc = (auditorium) => {
   let listAudi = [`<option class="item-option" value="0">Select Auditorium</option>`];
   listAudi.push(auditorium.map((valueAudi, index) => {
-    return `<option className="item-option" value=${valueAudi} key=${index}>${valueAudi}</option>`;
+    return `<option className="item-option" value=${valueAudi.id} key=${index}>${valueAudi.name}</option>`;
   }));
 
   return listAudi;
@@ -167,7 +168,7 @@ const listAudiFunc = (auditorium) => {
 
 const fetchTime = (date, audi) => {
   $.ajax({
-    url: 'http://127.0.0.1:8080/LearnAPIJava/rest/film/' + idFilm + "/" + date + "/" + audi + "/time",
+    url: 'http://127.0.0.1:8080/film/' + idFilm + "/" + date + "/" + audi + "/time",
     type: "get",
     dataType: 'json',
     success: (data) => {
@@ -187,7 +188,7 @@ const listTimeFunc = (time) => {
 
 const fetchPriceDiscount = (dateSelected, audiSelected, timeSelected) => {
   $.ajax({
-    url: 'http://127.0.0.1:8080/LearnAPIJava/rest/film/' + dateSelected + "/" + audiSelected + "/" + timeSelected + "/price",
+    url: 'http://127.0.0.1:8080/film/' + dateSelected + "/" + audiSelected + "/" + timeSelected + "/price",
     type: "get",
     dataType: 'json',
     success: (data) => {
@@ -201,7 +202,7 @@ const fetchPriceDiscount = (dateSelected, audiSelected, timeSelected) => {
 
 const fetchAllSeats = (dateSelected, audiSelected, timeSelected) => {
   $.ajax({
-    url: 'http://127.0.0.1:8080/LearnAPIJava/rest/film/' + dateSelected + "/" + audiSelected + "/" + timeSelected + "/all-seats",
+    url: 'http://127.0.0.1:8080/film/' + dateSelected + "/" + audiSelected + "/" + timeSelected + "/all-seats",
     type: "get",
     dataType: 'json',
     success: (data) => {
@@ -221,7 +222,7 @@ function loadSeat(data) {
 
 const fetchSeatsSold = (dateSelected, audiSelected, timeSelected) => {
   $.ajax({
-    url: 'http://127.0.0.1:8080/LearnAPIJava/rest/film/' + dateSelected + "/" + audiSelected + "/" + timeSelected + "/seats-sold",
+    url: 'http://127.0.0.1:8080/film/' + dateSelected + "/" + audiSelected + "/" + timeSelected + "/seats-sold",
     type: "get",
     dataType: 'json',
     success: (data) => {
@@ -232,7 +233,7 @@ const fetchSeatsSold = (dateSelected, audiSelected, timeSelected) => {
 
 const showSeatsSold = (seatsSold) => {
   for (let seat of seatsSold) {
-    $(".seats .seat[data-seat=" + seat + "]").addClass("sold");
+    $(".seats .seat[data-seat=" + seat.id + "]").addClass("sold");
   }
 }
 
@@ -244,16 +245,19 @@ const totalMoneyFunc = () => {
 
 const fetchFoody = () => {
   $.ajax({
-    url: 'http://127.0.0.1:8080/LearnAPIJava/rest/film/foody',
+    url: 'http://127.0.0.1:8080/foody',
     type: "get",
     dataType: 'json',
     success: (data) => {
       foody = data;
-      const scriptFoody = `<script src="js/foody.js"></script>`;
-      $("#list-food").html(listFoody(data));
-      $("#add-script-foody").html(scriptFoody);
     }
   });
+}
+
+const showFoodData = () => {
+  const scriptFoody = `<script src="js/foody.js"></script>`;
+  $("#list-food").html(listFoody(foody));
+  $("#add-script-foody").html(scriptFoody);
 }
 
 const listFoody = (data) => {
@@ -291,10 +295,8 @@ const calcFoodMoney = () => {
   foodMoney = 0;
 
   for (const fooSelected in listFoodySelected) {
-    console.log(fooSelected, listFoodySelected[fooSelected]);
     for (const fooItem in foody) {
       if (foody[fooItem].id == fooSelected) {
-        console.log(foody[fooItem])
         foodMoney += listFoodySelected[fooSelected] * foody[fooItem].price;
       }
     }
@@ -312,10 +314,20 @@ const postDataReservation = () => {
 }
 
 const ajaxPostReservation = (seat_id) => {
+  const data = {
+    acc_username: acc_username,
+    seat_id: seat_id,
+    date: dateSelected,
+    audi: audiSelected,
+    time: timeSelected
+  }
+
   $.ajax({
-    url: `http://localhost:8080/LearnAPIJava/rest/film/reservation/${acc_username}/${seat_id}/${dateSelected}/${audiSelected}/${timeSelected}`,
+    url: `http://localhost:8080/film/reservation/`,
     type: "post",
     dataType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify(data),
     success: () => {
       location.reload();
     },
@@ -331,10 +343,21 @@ const postDataReservationFoody = () => {
 }
 
 const ajaxPostReservationFoody = (foo_id, quantity) => {
+  const data = {
+    acc_username: acc_username,
+    foo_id: foo_id,
+    quantity: quantity,
+    date: dateSelected,
+    audi: audiSelected,
+    time: timeSelected
+  }
+
   $.ajax({
-    url: `http://localhost:8080/LearnAPIJava/rest/film/reservation-food/${acc_username}/${foo_id}/${quantity}/${dateSelected}/${audiSelected}/${timeSelected}`,
+    url: `http://localhost:8080/film/reservation-food/`,
     type: "post",
     dataType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify(data),
     success: () => {
       location.reload();
     },
